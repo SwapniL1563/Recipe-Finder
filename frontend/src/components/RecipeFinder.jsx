@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import { UserContext } from '../context/context';
 import Footer from './Footer';
 import SkeletonCard from './SkeletonCard';
+import { toast } from 'react-toastify';
 
 const RecipeFinder = () => {
     const [ingredients,setIngredients] = useState("");
@@ -20,16 +21,19 @@ const RecipeFinder = () => {
             });
             if (Array.isArray(res.data)) {
             setRecipe(res.data);
+            toast("fetch recipe successfully!")
             } else if (res.data.recipes && Array.isArray(res.data.recipes)) {
             setRecipe(res.data.recipes);
+            toast("fetch recipe successfully!")
             } else {
             setRecipe([]); // fallback to empty array
+            toast("fetch recipe successfully!")
             console.error("Unexpected data format:", res.data)
             }
             // setRecipe(res.data);
         } catch (error) {
             if (error.response?.status === 429) {
-            alert("Daily recipe search limit reached. Please try again tomorrow!");
+            toast.error("Daily recipe search limit reached. Please try again tomorrow!");
             }
             console.error("Error fetching recipes: ",error.message);
         }
