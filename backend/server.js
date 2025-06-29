@@ -10,8 +10,14 @@ const app = express();
 // connect to DB
 connectDB();
 
+// cors options - allow frontend
+const corsOptions = {
+  origin: "https://recipe-finder-frontend-rho.vercel.app",
+  credentials: true, 
+}
+
 // middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // routes
