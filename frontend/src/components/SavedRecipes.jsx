@@ -11,7 +11,7 @@ const SavedRecipes = () => {
 
     const fetchRecipesDetails = async(id) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/recipe/details/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/recipe/details/${id}`);
             setSelected(response.data)
         } catch (error) {
             console.error("Error fetching recipe details: ",error.message);
@@ -23,7 +23,7 @@ const SavedRecipes = () => {
         const loadSaved = async () => {
           setLoading(true);
           try {
-          const res = await axios.get("http://localhost:5000/api/recipe/saved");
+          const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/recipe/saved`);
           setTimeout(()=> {
              setSaved(res.data);
              setLoading(false);

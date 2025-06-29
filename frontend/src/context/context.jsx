@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useState } from "react";
+import BACKEND_URL from ""
 
 export const UserContext = createContext();
 
@@ -10,7 +11,7 @@ const UserContextProvider = ({children}) => {
 
     const toggleSaveRecipes = async(id) => {
         try {
-            const res = await axios.post("http://localhost:5000/api/recipe/toggle-save",{id});
+            const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/recipe/toggle-save`,{id});
             // Update main recipe list
             setRecipe((prev) => prev.map((item) =>
             item.id === id ? { ...item, saved: res.data.saved } : item ));
@@ -18,10 +19,9 @@ const UserContextProvider = ({children}) => {
             // Also update saved list if you're on saved page
             setSaved((prev) =>
             res.data.saved ? [...prev, recipe.find((item) => item.id === id)]: prev.filter((item) => item.id !== id) );
-    
-            } catch (error) {
+        } catch (error) {
                 alert("Error saving/unsave recipe", error.message);
-            }
+        }
     }
 
 

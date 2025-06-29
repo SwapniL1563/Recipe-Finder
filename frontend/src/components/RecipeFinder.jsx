@@ -15,7 +15,7 @@ const RecipeFinder = () => {
         if(!ingredients) return;
         setLoading(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/recipe/fetch",{
+            const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/recipe/fetch`,{
                 ingredients,cuisine,
             });
             if (Array.isArray(res.data)) {
@@ -39,7 +39,7 @@ const RecipeFinder = () => {
 
     const fetchRecipesDetails = async(id) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/recipe/details/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/recipe/details/${id}`);
             setSelected(response.data)
         } catch (error) {
             console.error("Error fetching recipe details: ",error.message);
