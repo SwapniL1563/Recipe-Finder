@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useState } from "react";
-import BACKEND_URL from ""
 
 export const UserContext = createContext();
 
