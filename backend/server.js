@@ -2,7 +2,7 @@ import express from 'express';
 import cors from "cors"
 import connectDB from './config/connectDB.js';
 import recipeRoutes from "./routes/recipeRoutes.js"
-import rateLimit from "express-rate-limiter";
+import rateLimit from "express-rate-limit";
 
 const PORT = 5000;
 
